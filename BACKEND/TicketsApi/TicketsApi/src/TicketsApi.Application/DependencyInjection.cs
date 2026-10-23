@@ -1,5 +1,6 @@
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
+using TicketsApi.Application.Auth;
 using TicketsApi.Application.Persons;
 using TicketsApi.Application.Users;
 
@@ -12,6 +13,7 @@ public static class DependencyInjection
         services.AddValidatorsFromAssemblyContaining<CreatePersonValidator>();
         services.AddScoped<IPersonService, PersonService>();
         services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IAuthService, AuthService>();
         return services;
     }
 }

@@ -1,5 +1,6 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using TicketsApi.Application.Auth;
 using TicketsApi.Application.Persons;
 using TicketsApi.Application.Security;
 using TicketsApi.Infrastructure.Persistence;
@@ -18,6 +19,9 @@ public static class DependencyInjection
         services.AddSingleton<IPasswordService, BCryptPasswordService>();
         services.AddScoped<IPersonRepository, PersonRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
+        services.Configure<JwtOptions>(configuration.GetSection(JwtOptions.SectionName));
+        services.AddSingleton<IJwtTokenService, JwtTokenService>();
+        services.AddScoped<IAuthRepository, AuthRepository>();
         return services;
     }
 }

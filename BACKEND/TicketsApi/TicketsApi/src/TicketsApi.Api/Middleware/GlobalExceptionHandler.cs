@@ -36,6 +36,11 @@ public sealed class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logge
                 body = new ProblemDetails { Status = status, Title = "Referencia inválida.", Detail = reference.Message };
                 break;
 
+            case UnauthorizedException unauthorized:
+                status = StatusCodes.Status401Unauthorized;
+                body = new ProblemDetails { Status = status, Title = "No autorizado.", Detail = unauthorized.Message };
+                break;
+
             default:
                 logger.LogError(exception, "Error no controlado en {Method} {Path}",
                     context.Request.Method, context.Request.Path);
