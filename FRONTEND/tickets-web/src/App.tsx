@@ -4,6 +4,7 @@ import ProtectedRoute from "./features/auth/ProtectedRoute"
 import DashboardPage from './pages/DashboardPage'
 import UnderConstructionPage from './pages/UnderConstructionPage'
 import AppLayout from "./layout/AppLayout"
+import ProfilePage from "./pages/ProfilePage"
 
 export default  function App() {
 
@@ -17,6 +18,7 @@ export default  function App() {
           <Route index element={<Navigate to="/dashboard" replace />} />
           <Route path="/dashboard" element={<DashboardPage />} />
           {/* Aquí se irán agregando las pantallas reales: perfiles, personas, usuarios... */}
+          <Route path="/Administration/profiles" element={<ProfilePage />} />
           <Route path="*" element={<UnderConstructionPage />} />
         </Route>
        </Route>
