@@ -17,4 +17,13 @@ public class PersonasController(IPersonService personService) : ControllerBase
         var response = await personService.CreateAsync(request, ct);
         return StatusCode(StatusCodes.Status201Created, response);
     }
+
+    /// <summary>Lista todas las personas.</summary>
+    [HttpGet]
+    [ProducesResponseType(typeof(IReadOnlyList<PersonDto>), StatusCodes.Status200OK)]
+    public async Task<IActionResult> List(CancellationToken ct)
+    {
+        var persons = await personService.ListAsync(ct);
+        return Ok(persons);
+    }
 }

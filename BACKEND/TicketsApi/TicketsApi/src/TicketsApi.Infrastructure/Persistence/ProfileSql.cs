@@ -16,7 +16,7 @@ internal static class ProfileSql
    public const string List = """
     SELECT ProfileId, Name, Description, IsActive, CreatedAt
     FROM seg.Profile
-    ORDER BY Name;
+    ORDER BY CreatedAt DESC;
     """;
 
 }

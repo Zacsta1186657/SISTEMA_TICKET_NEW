@@ -4,24 +4,26 @@ import ProtectedRoute from "./features/auth/ProtectedRoute"
 import DashboardPage from './pages/DashboardPage'
 import UnderConstructionPage from './pages/UnderConstructionPage'
 import AppLayout from "./layout/AppLayout"
-import ProfilePage from "./pages/ProfilePage"
+import ProfilePage from "./features/profiles/ProfilesPage"
+import PersonPage from "./features/person/PersonPage"
 
-export default  function App() {
+export default function App() {
 
   return (
     <Routes>
       <Route path="/login" element={<LoginPage />} />
 
-       {/* Todo lo de aquí adentro exige sesión y se muestra dentro del diseño con el menú */}
-       <Route element={<ProtectedRoute />}>
+      {/* Todo lo de aquí adentro exige sesión y se muestra dentro del diseño con el menú */}
+      <Route element={<ProtectedRoute />}>
         <Route element={<AppLayout />}>
           <Route index element={<Navigate to="/dashboard" replace />} />
           <Route path="/dashboard" element={<DashboardPage />} />
           {/* Aquí se irán agregando las pantallas reales: perfiles, personas, usuarios... */}
           <Route path="/Administration/profiles" element={<ProfilePage />} />
+          <Route path="/Administration/person" element={<PersonPage />} />
           <Route path="*" element={<UnderConstructionPage />} />
         </Route>
-       </Route>
+      </Route>
     </Routes>
   )
 }

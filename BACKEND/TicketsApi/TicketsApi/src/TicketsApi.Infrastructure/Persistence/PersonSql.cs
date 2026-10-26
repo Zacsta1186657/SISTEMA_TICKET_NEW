@@ -11,5 +11,11 @@ namespace TicketsApi.Infrastructure.Persistence
         OUTPUT INSERTED.PersonId
         VALUES (@DocumentNumber, @FirstName, @LastName, @Email, @Phone, @CreatedBy);
         """;
+
+        public const string List = """
+        SELECT PersonId, DocumentNumber, FirstName, LastName, Email, Phone, IsActive, CreatedAt
+        FROM org.Person WHERE FirstName != 'Administrador' OR PersonId != 2
+        ORDER BY CreatedAt DESC;
+        """;
     }
 }

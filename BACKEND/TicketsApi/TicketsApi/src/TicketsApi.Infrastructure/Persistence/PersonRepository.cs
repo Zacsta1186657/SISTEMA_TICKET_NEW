@@ -42,4 +42,12 @@ public class PersonRepository(IDbConnectionFactory connectionFactory) : IPersonR
             throw new ReferenceNotFoundException("El usuario indicado en CreatedBy no existe.");
         }
     }
+
+    public async Task<IReadOnlyList<PersonDto>> ListAsync(CancellationToken ct)
+    {
+        await using var connection = await connectionFactory.OpenAsync(ct);
+        var rows = await connection.QueryAsync<PersonDto>(
+            new CommandDefinition(PersonSql.List, cancellationToken: ct));
+        return rows.ToList();
+    }
 }

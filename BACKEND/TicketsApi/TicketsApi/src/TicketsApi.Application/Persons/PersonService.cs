@@ -28,4 +28,7 @@ public class PersonService(
 
     private static string? NullIfBlank(string? value)
         => string.IsNullOrWhiteSpace(value) ? null : value.Trim();
+
+    public Task<IReadOnlyList<PersonDto>> ListAsync(CancellationToken ct)
+        => repository.ListAsync(ct);
 }

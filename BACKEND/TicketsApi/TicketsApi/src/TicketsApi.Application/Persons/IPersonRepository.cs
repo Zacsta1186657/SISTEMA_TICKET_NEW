@@ -8,4 +8,6 @@ public interface IPersonRepository
     /// <exception cref="Exceptions.ConflictException">Documento o correo ya registrados.</exception>
     /// <exception cref="Exceptions.ReferenceNotFoundException">createdBy no existe.</exception>
     Task<int> CreateAsync(Person person, int createdBy, CancellationToken ct);
+
+    Task<IReadOnlyList<PersonDto>> ListAsync(CancellationToken ct);
 }

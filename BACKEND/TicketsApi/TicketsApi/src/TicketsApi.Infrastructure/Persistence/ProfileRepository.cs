@@ -34,7 +34,9 @@ namespace TicketsApi.Infrastructure.Persistence
             // 547 = clave foránea: CreatedBy no es un UserId existente
             catch(SqlException ex) when (ex.Number == 547)
             {
-                throw new ReferenceNotFoundException("El usuario que registra el perfil no existe.");
+                if (ex.Message.Contains("FK_Profile_CreatedBy"))
+                    throw new ReferenceNotFoundException("El usuario que registra el perfil no existe.");
+                throw;
             }
         }
 
